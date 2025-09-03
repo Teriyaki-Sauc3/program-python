@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Grade Calculator", layout="wide")
-st.title("📘 Student Grade Calculator")
+st.title(" Student Grade Calculator")
 
 st.markdown(
     """
@@ -33,7 +33,7 @@ def compute_grade(absences, exam, quizzes, requirements, recitation):
     return (0.6 * exam) + (0.1 * attendance) + (0.3 * class_standing)
 
 # ---- Tabs for grading periods ----
-tabs = st.tabs(["📖 Prelim", "📚 Midterm", "📝 Finals"])
+tabs = st.tabs([" Prelim", " Midterm", " Finals"])
 
 with tabs[0]:
     st.markdown('<div class="grade-card"><div class="grade-header">Prelim Inputs</div>', unsafe_allow_html=True)
@@ -79,7 +79,7 @@ if st.button("= Calculate", use_container_width=True):
         overall = (0.2 * prelim) + (0.3 * midterm) + (0.5 * finals)
 
         # ---- Dashboard ----
-        st.subheader("📊 Results Dashboard")
+        st.subheader(" Results Dashboard")
 
         st.progress(min(overall / 100, 1.0))
 
@@ -106,3 +106,4 @@ if st.button("= Calculate", use_container_width=True):
         st.subheader("🎯 Required Grades")
         st.write(f"To **PASS (75%)** → Midterm: `{midterm_pass:.2f}`, Finals: `{finals_pass:.2f}`")
         st.write(f"To be **Dean's Lister (90%)** → Midterm: `{midterm_dl:.2f}`, Finals: `{finals_dl:.2f}`")
+
