@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Grade Calculator", layout="wide")
-st.title("Student Grade Calculator")
+st.title(" Student Grade Calculator")
 
 # --- PRELIM ---
 st.subheader("Prelim")
