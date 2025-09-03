@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Grade Calculator", layout="wide")
-st.title("📘 Student Grade Calculator")
+st.title("Grade Calculator")
 
 # --- PRELIM ---
 st.subheader("Prelim")
@@ -48,5 +48,6 @@ if st.button("= Calculate"):
         st.error(err1 or err2 or err3)
     else:
         overall = (0.2 * prelim) + (0.3 * midterm) + (0.5 * finals)
-        st.success(f"📊 Prelim: {prelim:.2f} | Midterm: {midterm:.2f} | Finals: {finals:.2f}")
-        st.info(f"⭐ Overall Grade: {overall:.2f}")
+        st.success(f" Prelim: {prelim:.2f} | Midterm: {midterm:.2f} | Finals: {finals:.2f}")
+        st.info(f" The verall Grade: {overall:.2f}")
+
