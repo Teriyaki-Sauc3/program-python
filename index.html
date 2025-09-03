@@ -15,7 +15,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
         }
 
@@ -24,7 +24,7 @@
             border-radius: 20px;
             box-shadow: 0px 15px 30px rgba(0,0,0,0.15);
             padding: 30px;
-            max-width: 750px;
+            max-width: 1200px;
             width: 100%;
         }
 
@@ -49,17 +49,20 @@
         }
 
         h4 {
-            margin-top: 20px;
+            margin-top: 10px;
             color: #3700b3;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
+            text-align: center;
         }
 
         .form-control {
             text-align: right;
             font-weight: bold;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .row-term {
+            margin-bottom: 15px;
         }
 
         .btn-calc {
@@ -68,8 +71,9 @@
             font-size: 1.2rem;
             font-weight: bold;
             border-radius: 15px;
-            padding: 15px;
-            width: 100%;
+            padding: 15px 40px;
+            display: block;
+            margin: 0 auto;
         }
 
         .btn-calc:hover {
@@ -78,10 +82,6 @@
 
         .result {
             margin-top: 20px;
-        }
-
-        .alert {
-            font-size: 1rem;
         }
 
         footer {
@@ -111,32 +111,32 @@
         <form method="POST">
             <!-- PRELIM -->
             <h4>Prelim</h4>
-            <div class="row g-2">
-                <div class="col-md-4"><input type="number" name="absences_prelim" class="form-control" placeholder="Absences" min="0" required></div>
-                <div class="col-md-4"><input type="number" step="0.1" name="Prelim_Exam" class="form-control" placeholder="Exam" min="0" max="100" required></div>
-                <div class="col-md-4"><input type="number" step="0.1" name="Prelim_Quizzes" class="form-control" placeholder="Quizzes" min="0" max="100" required></div>
-                <div class="col-md-6"><input type="number" step="0.1" name="Prelim_Requirements" class="form-control" placeholder="Requirements" min="0" max="100" required></div>
-                <div class="col-md-6"><input type="number" step="0.1" name="Prelim_Recitation" class="form-control" placeholder="Recitation" min="0" max="100" required></div>
+            <div class="row row-term g-2">
+                <div class="col"><input type="number" name="absences_prelim" class="form-control" placeholder="Absences" min="0" required></div>
+                <div class="col"><input type="number" step="0.1" name="Prelim_Exam" class="form-control" placeholder="Exam" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Prelim_Quizzes" class="form-control" placeholder="Quizzes" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Prelim_Requirements" class="form-control" placeholder="Requirements" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Prelim_Recitation" class="form-control" placeholder="Recitation" min="0" max="100" required></div>
             </div>
 
             <!-- MIDTERM -->
             <h4>Midterm</h4>
-            <div class="row g-2">
-                <div class="col-md-4"><input type="number" name="absences_midterm" class="form-control" placeholder="Absences" min="0" required></div>
-                <div class="col-md-4"><input type="number" step="0.1" name="Midterm_Exam" class="form-control" placeholder="Exam" min="0" max="100" required></div>
-                <div class="col-md-4"><input type="number" step="0.1" name="Midterm_Quizzes" class="form-control" placeholder="Quizzes" min="0" max="100" required></div>
-                <div class="col-md-6"><input type="number" step="0.1" name="Midterm_Requirements" class="form-control" placeholder="Requirements" min="0" max="100" required></div>
-                <div class="col-md-6"><input type="number" step="0.1" name="Midterm_Recitation" class="form-control" placeholder="Recitation" min="0" max="100" required></div>
+            <div class="row row-term g-2">
+                <div class="col"><input type="number" name="absences_midterm" class="form-control" placeholder="Absences" min="0" required></div>
+                <div class="col"><input type="number" step="0.1" name="Midterm_Exam" class="form-control" placeholder="Exam" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Midterm_Quizzes" class="form-control" placeholder="Quizzes" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Midterm_Requirements" class="form-control" placeholder="Requirements" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Midterm_Recitation" class="form-control" placeholder="Recitation" min="0" max="100" required></div>
             </div>
 
             <!-- FINALS -->
             <h4>Finals</h4>
-            <div class="row g-2">
-                <div class="col-md-4"><input type="number" name="absences_finals" class="form-control" placeholder="Absences" min="0" required></div>
-                <div class="col-md-4"><input type="number" step="0.1" name="Finals_Exam" class="form-control" placeholder="Exam" min="0" max="100" required></div>
-                <div class="col-md-4"><input type="number" step="0.1" name="Finals_Quizzes" class="form-control" placeholder="Quizzes" min="0" max="100" required></div>
-                <div class="col-md-6"><input type="number" step="0.1" name="Finals_Requirements" class="form-control" placeholder="Requirements" min="0" max="100" required></div>
-                <div class="col-md-6"><input type="number" step="0.1" name="Finals_Recitation" class="form-control" placeholder="Recitation" min="0" max="100" required></div>
+            <div class="row row-term g-2">
+                <div class="col"><input type="number" name="absences_finals" class="form-control" placeholder="Absences" min="0" required></div>
+                <div class="col"><input type="number" step="0.1" name="Finals_Exam" class="form-control" placeholder="Exam" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Finals_Quizzes" class="form-control" placeholder="Quizzes" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Finals_Requirements" class="form-control" placeholder="Requirements" min="0" max="100" required></div>
+                <div class="col"><input type="number" step="0.1" name="Finals_Recitation" class="form-control" placeholder="Recitation" min="0" max="100" required></div>
             </div>
 
             <!-- "=" button -->
