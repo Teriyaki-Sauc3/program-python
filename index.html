@@ -14,82 +14,55 @@
         * {
             box-sizing: border-box;
         }
-
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #e0f7fa, #e1bee7);
-            
-            /* Flexbox centering */
             display: flex;
             align-items: center;
             justify-content: center;
-            
-            /* Fallback centering for older browsers */
             text-align: center;
         }
-
         .calculator-container {
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             padding: 40px;
             width: 100%;
-            max-width: 600px;
-            margin: 20px; /* Add some margin for mobile */
-            
-            /* Reset text alignment inside container */
+            max-width: 700px;
+            margin: 20px;
             text-align: left;
         }
-
-        .form-label {
-            font-weight: 600;
-        }
-
+        .form-label { font-weight: 600; }
         .btn-primary {
             background-color: #6200ea;
             border-color: #6200ea;
             font-weight: bold;
             font-size: 1.1rem;
         }
-
         .btn-primary:hover {
             background-color: #3700b3;
             border-color: #3700b3;
         }
-
-        .result {
-            margin-top: 30px;
-        }
-
+        .result { margin-top: 30px; }
         h2 {
             font-weight: bold;
             text-align: center;
             margin-bottom: 30px;
             color: #6200ea;
         }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        .alert {
-            font-size: 1rem;
-        }
-
+        ul { padding-left: 20px; }
+        .alert { font-size: 1rem; }
         footer {
             text-align: center;
             margin-top: 20px;
             font-size: 0.85rem;
             color: #666;
         }
-
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .calculator-container {
                 margin: 10px;
@@ -102,40 +75,29 @@
     <div class="calculator-container">
         <h2>📘 Student Grade Calculator</h2>
         <form method="POST">
-            <div class="mb-3">
-                <label class="form-label">Number of absences:</label>
-                <input type="number" name="absences" class="form-control" min="0" required>
-            </div>
+            <!-- PRELIM -->
+            <h4>Prelim</h4>
+            <div class="mb-3"><label class="form-label">Absences:</label><input type="number" name="absences_prelim" class="form-control" min="0" required></div>
+            <div class="mb-3"><label class="form-label">Exam:</label><input type="number" step="0.1" name="Prelim_Exam" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Quizzes:</label><input type="number" step="0.1" name="Prelim_Quizzes" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Requirements:</label><input type="number" step="0.1" name="Prelim_Requirements" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Recitation:</label><input type="number" step="0.1" name="Prelim_Recitation" class="form-control" min="0" max="100" required></div>
 
-            <div class="mb-3">
-                <label class="form-label">Prelim Exam Grade:</label>
-                <input type="number" step="0.1" name="Prelim_Exam" class="form-control" min="0" max="100" required>
-            </div>
+            <!-- MIDTERM -->
+            <h4>Midterm</h4>
+            <div class="mb-3"><label class="form-label">Absences:</label><input type="number" name="absences_midterm" class="form-control" min="0" required></div>
+            <div class="mb-3"><label class="form-label">Exam:</label><input type="number" step="0.1" name="Midterm_Exam" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Quizzes:</label><input type="number" step="0.1" name="Midterm_Quizzes" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Requirements:</label><input type="number" step="0.1" name="Midterm_Requirements" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Recitation:</label><input type="number" step="0.1" name="Midterm_Recitation" class="form-control" min="0" max="100" required></div>
 
-            <div class="mb-3">
-                <label class="form-label">Quizzes Grade:</label>
-                <input type="number" step="0.1" name="Quizzes" class="form-control" min="0" max="100" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Requirements Grade:</label>
-                <input type="number" step="0.1" name="Requirements" class="form-control" min="0" max="100" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Recitation Grade:</label>
-                <input type="number" step="0.1" name="Recitation" class="form-control" min="0" max="100" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Midterm Grade:</label>
-                <input type="number" step="0.1" name="Midterm" class="form-control" min="0" max="100" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Finals Grade:</label>
-                <input type="number" step="0.1" name="Finals" class="form-control" min="0" max="100" required>
-            </div>
+            <!-- FINALS -->
+            <h4>Finals</h4>
+            <div class="mb-3"><label class="form-label">Absences:</label><input type="number" name="absences_finals" class="form-control" min="0" required></div>
+            <div class="mb-3"><label class="form-label">Exam:</label><input type="number" step="0.1" name="Finals_Exam" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Quizzes:</label><input type="number" step="0.1" name="Finals_Quizzes" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Requirements:</label><input type="number" step="0.1" name="Finals_Requirements" class="form-control" min="0" max="100" required></div>
+            <div class="mb-3"><label class="form-label">Recitation:</label><input type="number" step="0.1" name="Finals_Recitation" class="form-control" min="0" max="100" required></div>
 
             <button type="submit" class="btn btn-primary w-100">🧮 Calculate</button>
         </form>
@@ -147,18 +109,21 @@
                     <div class="alert alert-danger">{{ result.error }}</div>
                 {% else %}
                     <div class="alert alert-success"><strong>Prelim Grade:</strong> {{ result.prelim }}</div>
+                    <div class="alert alert-success"><strong>Midterm Grade:</strong> {{ result.midterm }}</div>
+                    <div class="alert alert-success"><strong>Finals Grade:</strong> {{ result.finals }}</div>
                     <div class="alert alert-info"><strong>Overall Grade:</strong> {{ result.overall }}</div>
 
                     <div class="mt-3">
                         <h5>📌 Required Grades</h5>
                         <ul>
-                            <li>To <strong>PASS</strong> (75%): Midterm = {{ result.midterm_pass }}, Finals = {{ result.finals_pass }}</li>
-                            <li>To be <strong>DEAN'S LISTER</strong> (90%): Midterm = {{ result.midterm_dl }}, Finals = {{ result.finals_dl }}</li>
+                            <li>To <strong>PASS</strong> (75%): {{ result.pass_message }}</li>
+                            <li>To be <strong>DEAN'S LISTER</strong> (90%): {{ result.dl_message }}</li>
                         </ul>
                     </div>
                 {% endif %}
             </div>
         {% endif %}
+
         <footer>
             Made with 💻 using Flask + Bootstrap
         </footer>
