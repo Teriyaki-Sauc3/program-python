@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Grade Calculator", layout="wide")
-st.title("Grade Calculator")
+st.title("Student Grade Calculator")
 
 # --- PRELIM ---
 st.subheader("Prelim")
@@ -30,9 +30,8 @@ finals_quizzes = cols[2].number_input("Quizzes", min_value=0.0, max_value=100.0,
 finals_requirements = cols[3].number_input("Requirements", min_value=0.0, max_value=100.0, step=0.1, key="req_finals")
 finals_recitation = cols[4].number_input("Recitation", min_value=0.0, max_value=100.0, step=0.1, key="recit_finals")
 
-# --- CALCULATION BUTTON ---
+# --- CALCULATION ---
 if st.button("= Calculate"):
-    # sample formula (you can adjust weights)
     def compute_grade(absences, exam, quizzes, requirements, recitation):
         if absences >= 4:
             return None, "FAILED due to 4 or more absences"
@@ -48,6 +47,28 @@ if st.button("= Calculate"):
         st.error(err1 or err2 or err3)
     else:
         overall = (0.2 * prelim) + (0.3 * midterm) + (0.5 * finals)
-        st.success(f" Prelim: {prelim:.2f} | Midterm: {midterm:.2f} | Finals: {finals:.2f}")
-        st.info(f" The verall Grade: {overall:.2f}")
 
+        # --- RESULTS ---
+        col1, col2, col3 = st.columns(3)
+        col1.metric(" Prelim", f"{prelim:.2f}")
+        col2.metric(" Midterm", f"{midterm:.2f}")
+        col3.metric(" Finals", f"{finals:.2f}")
+
+        if overall < 75:
+            st.error(f" Overall Grade: {overall:.2f} → FAILED")
+        else:
+            st.success(f" Overall Grade: {overall:.2f}")
+
+        # --- REQUIRED GRADES ---
+        target_pass = 75
+        target_dl = 90
+
+        # What midterm/finals needed if prelim is known
+        midterm_pass = (target_pass - (0.2 * prelim)) / 0.8
+        finals_pass = midterm_pass  # same weight assumption
+        midterm_dl = (target_dl - (0.2 * prelim)) / 0.8
+        finals_dl = midterm_dl
+
+        st.subheader("📌 Required Grades")
+        st.write(f"To **PASS (75%)**: Midterm = {midterm_pass:.2f}, Finals = {finals_pass:.2f}")
+        st.write(f"To be **Dean's Lister (90%)**: Midterm = {midterm_dl:.2f}, Finals = {finals_dl:.2f}")
