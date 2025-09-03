@@ -1,71 +1,52 @@
 import streamlit as st
 
-st.title("Grade Calculator")
+st.set_page_config(page_title="Grade Calculator", layout="wide")
+st.title("📘 Student Grade Calculator")
 
-# --- PRELIM INPUTS ---
-st.header("Prelim Grades")
-absences_prelim = st.number_input("Prelim Absences", min_value=0, step=1)
-Prelim_Exam = st.number_input("Prelim Exam (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Prelim_Quizzes = st.number_input("Prelim Quizzes (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Prelim_Requirements = st.number_input("Prelim Requirements (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Prelim_Recitation = st.number_input("Prelim Recitation (0-100)", min_value=0.0, max_value=100.0, step=0.1)
+# --- PRELIM ---
+st.subheader("Prelim")
+cols = st.columns(5)
+absences_prelim = cols[0].number_input("Absences", min_value=0, step=1, key="abs_prelim")
+prelim_exam = cols[1].number_input("Exam", min_value=0.0, max_value=100.0, step=0.1, key="exam_prelim")
+prelim_quizzes = cols[2].number_input("Quizzes", min_value=0.0, max_value=100.0, step=0.1, key="quiz_prelim")
+prelim_requirements = cols[3].number_input("Requirements", min_value=0.0, max_value=100.0, step=0.1, key="req_prelim")
+prelim_recitation = cols[4].number_input("Recitation", min_value=0.0, max_value=100.0, step=0.1, key="recit_prelim")
 
-# --- MIDTERM INPUTS ---
-st.header("Midterm Grades")
-absences_midterm = st.number_input("Midterm Absences", min_value=0, step=1)
-Midterm_Exam = st.number_input("Midterm Exam (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Midterm_Quizzes = st.number_input("Midterm Quizzes (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Midterm_Requirements = st.number_input("Midterm Requirements (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Midterm_Recitation = st.number_input("Midterm Recitation (0-100)", min_value=0.0, max_value=100.0, step=0.1)
+# --- MIDTERM ---
+st.subheader("Midterm")
+cols = st.columns(5)
+absences_midterm = cols[0].number_input("Absences", min_value=0, step=1, key="abs_midterm")
+midterm_exam = cols[1].number_input("Exam", min_value=0.0, max_value=100.0, step=0.1, key="exam_midterm")
+midterm_quizzes = cols[2].number_input("Quizzes", min_value=0.0, max_value=100.0, step=0.1, key="quiz_midterm")
+midterm_requirements = cols[3].number_input("Requirements", min_value=0.0, max_value=100.0, step=0.1, key="req_midterm")
+midterm_recitation = cols[4].number_input("Recitation", min_value=0.0, max_value=100.0, step=0.1, key="recit_midterm")
 
-# --- FINALS INPUTS ---
-st.header("Finals Grades")
-absences_finals = st.number_input("Finals Absences", min_value=0, step=1)
-Finals_Exam = st.number_input("Finals Exam (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Finals_Quizzes = st.number_input("Finals Quizzes (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Finals_Requirements = st.number_input("Finals Requirements (0-100)", min_value=0.0, max_value=100.0, step=0.1)
-Finals_Recitation = st.number_input("Finals Recitation (0-100)", min_value=0.0, max_value=100.0, step=0.1)
+# --- FINALS ---
+st.subheader("Finals")
+cols = st.columns(5)
+absences_finals = cols[0].number_input("Absences", min_value=0, step=1, key="abs_finals")
+finals_exam = cols[1].number_input("Exam", min_value=0.0, max_value=100.0, step=0.1, key="exam_finals")
+finals_quizzes = cols[2].number_input("Quizzes", min_value=0.0, max_value=100.0, step=0.1, key="quiz_finals")
+finals_requirements = cols[3].number_input("Requirements", min_value=0.0, max_value=100.0, step=0.1, key="req_finals")
+finals_recitation = cols[4].number_input("Recitation", min_value=0.0, max_value=100.0, step=0.1, key="recit_finals")
 
+# --- CALCULATION BUTTON ---
+if st.button("= Calculate"):
+    # sample formula (you can adjust weights)
+    def compute_grade(absences, exam, quizzes, requirements, recitation):
+        if absences >= 4:
+            return None, "FAILED due to 4 or more absences"
+        attendance = max(0, 100 - (absences * 10))
+        class_standing = (0.4 * quizzes) + (0.3 * requirements) + (0.3 * recitation)
+        return (0.6 * exam) + (0.1 * attendance) + (0.3 * class_standing), None
 
-# --- CALCULATIONS ---
-def compute_term(exam, quizzes, reqs, rec, absences):
-    if absences >= 4:
-        return None, "FAILED due to 4 or more absences"
-    attendance = max(0, 100 - (absences * 10))
-    class_standing = (0.4 * quizzes) + (0.3 * reqs) + (0.3 * rec)
-    term_grade = (0.6 * exam) + (0.1 * attendance) + (0.3 * class_standing)
-    return term_grade, None
+    prelim, err1 = compute_grade(absences_prelim, prelim_exam, prelim_quizzes, prelim_requirements, prelim_recitation)
+    midterm, err2 = compute_grade(absences_midterm, midterm_exam, midterm_quizzes, midterm_requirements, midterm_recitation)
+    finals, err3 = compute_grade(absences_finals, finals_exam, finals_quizzes, finals_requirements, finals_recitation)
 
-# Compute each term
-prelim, error_prelim = compute_term(Prelim_Exam, Prelim_Quizzes, Prelim_Requirements, Prelim_Recitation, absences_prelim)
-midterm, error_midterm = compute_term(Midterm_Exam, Midterm_Quizzes, Midterm_Requirements, Midterm_Recitation, absences_midterm)
-finals, error_finals = compute_term(Finals_Exam, Finals_Quizzes, Finals_Requirements, Finals_Recitation, absences_finals)
-
-# --- DISPLAY RESULTS ---
-if error_prelim:
-    st.error(f"Prelim: {error_prelim}")
-else:
-    st.success(f"Prelim Grade: {prelim:.2f}")
-
-if error_midterm:
-    st.error(f"Midterm: {error_midterm}")
-else:
-    st.success(f"Midterm Grade: {midterm:.2f}")
-
-if error_finals:
-    st.error(f"Finals: {error_finals}")
-else:
-    st.success(f"Finals Grade: {finals:.2f}")
-
-# Overall grade (only if all terms are valid)
-if prelim and midterm and finals:
-    overall = (0.2 * prelim) + (0.3 * midterm) + (0.5 * finals)
-    st.info(f"Overall Grade: {overall:.2f}")
-
-    # Targets
-    target_pass = 75
-    target_dl = 90
-
-    st.write("### Required Grades for Goals")
-    st.write(f"To PASS (75%): Need average ≥ {target_pass}")
-    st.write(f"To be DEAN'S LISTER (90%): Need average ≥ {target_dl}")
+    if err1 or err2 or err3:
+        st.error(err1 or err2 or err3)
+    else:
+        overall = (0.2 * prelim) + (0.3 * midterm) + (0.5 * finals)
+        st.success(f"📊 Prelim: {prelim:.2f} | Midterm: {midterm:.2f} | Finals: {finals:.2f}")
+        st.info(f"⭐ Overall Grade: {overall:.2f}")
