@@ -6,7 +6,7 @@ st.title(" Student Grade Calculator")
 # --- PRELIM ---
 st.subheader("Prelim")
 cols = st.columns(5)
-absences_prelim = cols[0].number_input("Absences", min_value=0, step=1, key="abs_prelim")
+absences_prelim = cols[0].number_input("Absences", min_value=0, step=1, key="abs_total")
 prelim_exam = cols[1].number_input("Exam", min_value=0.0, max_value=100.0, step=0.1, key="exam_prelim")
 prelim_quizzes = cols[2].number_input("Quizzes", min_value=0.0, max_value=100.0, step=0.1, key="quiz_prelim")
 prelim_requirements = cols[3].number_input("Requirements", min_value=0.0, max_value=100.0, step=0.1, key="req_prelim")
@@ -15,7 +15,7 @@ prelim_recitation = cols[4].number_input("Recitation", min_value=0.0, max_value=
 # --- MIDTERM ---
 st.subheader("Midterm")
 cols = st.columns(5)
-absences_midterm = cols[0].number_input("Absences", min_value=0, step=1, key="abs_midterm")
+absences_midterm = cols[0].number_input("Absences", min_value=0, step=1, key="abs_total")
 midterm_exam = cols[1].number_input("Exam", min_value=0.0, max_value=100.0, step=0.1, key="exam_midterm")
 midterm_quizzes = cols[2].number_input("Quizzes", min_value=0.0, max_value=100.0, step=0.1, key="quiz_midterm")
 midterm_requirements = cols[3].number_input("Requirements", min_value=0.0, max_value=100.0, step=0.1, key="req_midterm")
@@ -24,7 +24,7 @@ midterm_recitation = cols[4].number_input("Recitation", min_value=0.0, max_value
 # --- FINALS ---
 st.subheader("Finals")
 cols = st.columns(5)
-absences_finals = cols[0].number_input("Absences", min_value=0, step=1, key="abs_finals")
+absences_finals = cols[0].number_input("Absences", min_value=0, step=1, key="abs_total")
 finals_exam = cols[1].number_input("Exam", min_value=0.0, max_value=100.0, step=0.1, key="exam_finals")
 finals_quizzes = cols[2].number_input("Quizzes", min_value=0.0, max_value=100.0, step=0.1, key="quiz_finals")
 finals_requirements = cols[3].number_input("Requirements", min_value=0.0, max_value=100.0, step=0.1, key="req_finals")
@@ -72,3 +72,4 @@ if st.button("= Calculate"):
         st.subheader("📌 Required Grades")
         st.write(f"To **PASS (75%)**: Midterm = {midterm_pass:.2f}, Finals = {finals_pass:.2f}")
         st.write(f"To be **Dean's Lister (90%)**: Midterm = {midterm_dl:.2f}, Finals = {finals_dl:.2f}")
+
